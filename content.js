@@ -1,20 +1,23 @@
-var conversationHTML;
+setTimeout(function () {
+	console.log("Running2");
+	var chatElements = document.getElementsByClassName("_5yl5");
+	for (var i = 0; i < chatElements.length; i++) {
+		var message  = chatElements[i].children[0]
+		var messageSibling = message.parentNode.parentNode.parentNode.children[1];
+		if (isAYoutubeURL(message.innerText)) {
+			var ID = getYoutubeID(message.innerText);
+			messageSibling.innerHTML = '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + ID + '"frameborder="0" allowfullscreen></iframe></div>';
+		}
+	};
+}, 1000);
 
-/*Set timeout because it takes some time for facebook to open the conversations*/
-$(document).ready(function(){
-	setTimeout(function() {
-		console.log("Running");
-		$('div.conversation').each(function() {
-			conversationHTML += $(this).html();
-		});
-		console.log(conversationHTML);
-		
+function isAYoutubeURL(text) {
+	return (text.indexOf("youtube.com/watch") > -1)
+}
 
-	}, 5000);
-	
-});
 
-//TODO find a method to find all the youtube URLS and replace them with the iframe with the video
-function replaceURLwithiframe (text) {
-
+function getYoutubeID(text) {
+	var lst = [];
+	lst = text.split("v=");
+	return lst[1].split('"')[0];
 }
