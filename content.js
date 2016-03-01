@@ -1,14 +1,11 @@
 setTimeout(function () {
-	console.log("Running2");
-	var chatElements = document.getElementsByClassName("_5yl5");
-	for (var i = 0; i < chatElements.length; i++) {
-		var message  = chatElements[i].children[0]
-		var messageSibling = message.parentNode.parentNode.parentNode.children[1];
-		if (isAYoutubeURL(message.innerText)) {
-			var ID = getYoutubeID(message.innerText);
-			messageSibling.innerHTML = '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + ID + '"frameborder="0" allowfullscreen></iframe></div>';
+	console.log("Extension Running");
+	var videoImages = document.getElementsByClassName("_3xn1");
+	for (var i = 0; i < videoImages.length; i++) {
+		var ID = getYoutubeID2(videoImages[i].outerHTML);
+		videoImages[i].style = "";
+		videoImages[i].innerHTML = '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + ID + '"frameborder="0" allowfullscreen></iframe></div>';
 		}
-	};
 }, 1000);
 
 function isAYoutubeURL(text) {
@@ -20,4 +17,10 @@ function getYoutubeID(text) {
 	var lst = [];
 	lst = text.split("v=");
 	return lst[1].split('"')[0];
+}
+
+function getYoutubeID2(text) {
+	var lst = [];
+	lst = text.split(".ytimg.com%2Fvi%2F")
+	return lst[1].split('%2F')[0];
 }
