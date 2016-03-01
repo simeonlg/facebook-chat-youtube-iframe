@@ -8,7 +8,9 @@
 				"https://www.messenger.com/*"
 			],
 			"js": ["jquery-2.2.0.min.js", "content.js"],
-			"css": ["style.css"]
+			"css": ["style.css"],
+			"run_at": "document_end",
+			"web_accessible_resources": ["youtube.png"]
 		}
 	]
 }
